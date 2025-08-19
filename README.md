@@ -12,8 +12,7 @@
 
 1. Клонировать репозиторий:
    ```bash
-   git clone https://github.com/akineverused/test-task.git
-   cd best-app
+   git clone https://github.com/akineverused/test-task.git .
 
 2. Установить зависимости: 
     ```bash
