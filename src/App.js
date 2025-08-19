@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {BrowserRouter} from "react-router-dom";
+import AppRouter from "./components/AppRouter";
+import cl from './styles/App.module.css'
+import Header from "./components/UI/Header/Header";
+import {AuthContext} from "./context";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth') === 'true');
+    const [toastState, setToastState] = useState('');
+    const [toastText, setToastText] = useState('');
+    const [userData, setUserData] = useState({});
+
+    return (
+        <AuthContext.Provider value={{
+            isAuth, setIsAuth,
+            toastState, setToastState,
+            toastText, setToastText,
+            userData, setUserData
+        }}>
+            <BrowserRouter>
+                <div className={cl.appWrapper}>
+                    <Header/>
+                    <AppRouter/>
+                </div>
+            </BrowserRouter>
+        </AuthContext.Provider>
+    );
+};
 
 export default App;
